@@ -10,8 +10,6 @@ export enum ConfigKey {
 }
 
 export enum IconVariant {
-	Base = "base",
-	Light = "light",
-	Soft = "soft",
-	Warm = "warm",
+	Mocha = "base",
+	Latte = "light",
 }

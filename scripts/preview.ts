@@ -6,10 +6,8 @@ import { launch } from "puppeteer";
 import { IconVariant } from "~/constants";
 
 const colors = {
-	base: { background: "#11151D", foreground: "#DFDFED" },
-	light: { background: "#FBFDFF", foreground: "#000000" },
-	soft: { background: "#1C2029", foreground: "#DFDFED" },
-	warm: { background: "#121212", foreground: "#EDE3DF" },
+	base: { background: "#1E1E2E", foreground: "#CDD6F4" },
+	light: { background: "#EFF1F5", foreground: "#4C4F69" },
 } satisfies Record<IconVariant, { background: string; foreground: string }>;
 
 try {

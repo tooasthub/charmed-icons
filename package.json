@@ -87,23 +87,13 @@
 		"iconThemes": [
 			{
 				"id": "charmed-icons",
-				"label": "Charmed",
+				"label": "Charmed Icons (Catppuccin Mocha)",
 				"path": "./dist/themes/base/theme.json"
 			},
 			{
 				"id": "charmed-light",
-				"label": "Charmed Light",
+				"label": "Charmed Icons (Catppuccin Latte)",
 				"path": "./dist/themes/light/theme.json"
-			},
-			{
-				"id": "charmed-soft",
-				"label": "Charmed Soft",
-				"path": "./dist/themes/soft/theme.json"
-			},
-			{
-				"id": "charmed-warm",
-				"label": "Charmed Warm",
-				"path": "./dist/themes/warm/theme.json"
 			}
 		]
 	},
@@ -119,7 +109,6 @@
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^4.13.2",
-		"@ctrl/tinycolor": "^4.1.0",
 		"@types/node": "^22.15.21",
 		"@types/vscode": "^1.88.0",
 		"@vscode/vsce": "^2.32.0",

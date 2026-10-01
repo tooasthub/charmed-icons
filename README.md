@@ -15,21 +15,15 @@
 ## 📷 Previews
 
 <details>
-  <summary>🫐 Base</summary>
+  <summary>🌙 Catppuccin Mocha (dark)</summary>
   <img src="assets/base.webp"/>
 </details>
 <details>
-  <summary>🥥 Light</summary>
+  <summary>☀️ Catppuccin Latte (light)</summary>
   <img src="assets/light.webp"/>
 </details>
-<details>
-  <summary>🍇 Soft</summary>
-  <img src="assets/soft.webp"/>
-</details>
-<details>
-  <summary>🍓 Warm</summary>
-  <img src="assets/warm.webp"/>
-</details>
+
+Choose the Mocha icon theme with a dark VS Code color theme and the Latte icon theme with a light one.
 
 ## 🔧 Usage
 
