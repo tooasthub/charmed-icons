@@ -4,7 +4,7 @@
 
 <h1 align="center">Charmed Icons</h1>
 
-<p align="center">A Zed icon theme with Catppuccin Mocha and Latte palettes.</p>
+<p align="center">A Zed icon theme featuring the original Charmed Icons artwork.</p>
 
 <div align="center">
 
@@ -21,21 +21,25 @@ This repository can be installed locally as a Zed dev extension:
 2. Choose **Install Dev Extension**.
 3. Select this repository's directory.
 
-Then select **Charmed Icons (Catppuccin Mocha)** or **Charmed Icons (Catppuccin Latte)** in the icon theme selector. The extension provides both variants in one family.
+Then select **Charmed Icons Dark** or **Charmed Icons Light** in the icon theme selector. Both entries use the original Charmed Icons artwork.
+
+A local dev extension appears with a **(dev)** label and **Rebuild** and **Uninstall** controls. These are normal Zed development controls. Installing the dev extension overrides the published extension while the local version is installed.
 
 ## System appearance settings
 
-To switch the icon palette with your system's light or dark appearance, add this to Zed's `settings.json`:
+To select the matching Zed icon theme entry with your system's light or dark appearance, add this to Zed's `settings.json`:
 
 ```json
 {
   "icon_theme": {
     "mode": "system",
-    "dark": "Charmed Icons (Catppuccin Mocha)",
-    "light": "Charmed Icons (Catppuccin Latte)"
+    "dark": "Charmed Icons Dark",
+    "light": "Charmed Icons Light"
   }
 }
 ```
+
+The original artwork is identical in both appearances; system mode does not recolor the icons.
 
 ## File and folder icons
 
@@ -47,7 +51,7 @@ Zed's icon theme format supports file names and suffixes, but not language-ID as
 
 ## Development
 
-The checked-in `icons/mocha` and `icons/latte` sets are generated from the source SVGs in `icons/` and the palette definitions in `scripts/palettes.ts`. With Node.js 22.6 or newer, regenerate the icon files and theme JSON with:
+The generator builds the Zed theme JSON from the original SVGs in `icons/`. It does not recolor or duplicate the icon assets. With Node.js 22.6 or newer, regenerate the theme JSON with:
 
 ```sh
 pnpm generate
