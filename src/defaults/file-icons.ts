@@ -1,6 +1,5 @@
 interface FileIcons {
 	[key: string]: {
-		languages?: string[];
 		names?: string[];
 		extensions?: string[];
 	};
@@ -15,14 +14,12 @@ export const fileIcons: FileIcons = {
 		names: ["astro.config.js", "astro.config.mjs", "astro.config.cjs", "astro.config.ts", "astro.config.cts", "astro.config.mts"],
 	},
 	"astro": {
-		languages: ["astro"],
 		extensions: ["astro"],
 	},
 	"audio": {
 		extensions: ["aac", "aiff", "alac", "flac", "m4a", "m4p", "mogg", "mp3", "oga", "opus", "wav", "wma", "wv", "mid", "midi", "ogg"],
 	},
 	"binary": {
-		languages: ["code-text-binary"],
 		extensions: ["bin", "exe", "msi", "dll", "lib", "so", "dylib", "o", "obj", "a"],
 	},
 	"bun-lock": {
@@ -35,7 +32,6 @@ export const fileIcons: FileIcons = {
 		extensions: ["h"],
 	},
 	"c": {
-		languages: ["c"],
 		extensions: ["c", "i", "mi"],
 	},
 	"changelog": {
@@ -66,13 +62,6 @@ export const fileIcons: FileIcons = {
 		names: ["codeowners", "owners"],
 	},
 	"config": {
-		languages: [
-			// TODO: design icons for these
-			"editorconfig",
-			"ini",
-			"properties",
-			"spring-boot-properties",
-		],
 		extensions: [
 			"config.json",
 			"config.yaml",
@@ -183,31 +172,24 @@ export const fileIcons: FileIcons = {
 		extensions: ["hh", "hpp", "hxx", "h++", "hp", "tcc", "inl"],
 	},
 	"cpp": {
-		languages: ["cpp"],
 		extensions: ["cc", "cpp", "cxx", "c++", "cp", "mii", "ii"],
 	},
 	"cs": {
-		languages: ["csharp"],
 		extensions: ["cs", "csx", "csharp"],
 	},
 	"css": {
-		languages: ["css"],
 		extensions: ["css", "css.map", "less"],
 	},
 	"csv": {
-		languages: ["csv", "tsv", "psv"],
 		extensions: ["csv", "tsv", "psv", "xls", "xlsx", "xlsm"],
 	},
 	"dart": {
-		languages: ["dart"],
 		extensions: ["dart", "freezed.dart", "g.dart"],
 	},
 	"database": {
-		languages: ["sql"],
 		extensions: ["pdb", "sql", "pks", "pkb", "accdb", "mdb", "sqlite", "sqlite3", "pgsql", "postgres", "plpgsql", "psql", "db", "db3", "dat"],
 	},
 	"docker": {
-		languages: ["dockerfile", "dockercompose"],
 		extensions: [
 			"dockerfile",
 			"containerfile",
@@ -356,7 +338,6 @@ export const fileIcons: FileIcons = {
 		extensions: ["f90", "f95", "f03", "f08"],
 	},
 	"git": {
-		languages: ["git", "git-commit", "git-rebase", "ignore"],
 		extensions: ["patch", "gitlab-ci.yml", "gitlab-ci.yaml"],
 		names: [
 			".git",
@@ -381,7 +362,6 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"gleam": {
-		languages: ["gleam"],
 		extensions: ["gleam"],
 		names: ["gleam.toml"],
 	},
@@ -389,7 +369,6 @@ export const fileIcons: FileIcons = {
 		names: ["go.mod", "go.sum", "go.work", "go.work.sum"],
 	},
 	"go": {
-		languages: ["go"],
 		extensions: ["go", "tmpl", "templ", "gotmpl", "gohtml", "go.tmp", "go.html"],
 	},
 	"godot-assets": {
@@ -397,15 +376,12 @@ export const fileIcons: FileIcons = {
 		names: [".gdignore", "._sc_", "_sc_"],
 	},
 	"godot": {
-		languages: ["gdscript"],
 		extensions: ["gd"],
 	},
 	"hcl": {
-		languages: ["hcl"],
 		extensions: ["hcl"],
 	},
 	"html": {
-		languages: ["html"],
 		extensions: ["htm", "html", "xhtml", "html_vm", "asp"],
 	},
 	"image": {
@@ -465,7 +441,6 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"java": {
-		languages: ["java"],
 		extensions: ["jar", "java", "class", "jsp"],
 	},
 	"javascript-config": {
@@ -473,16 +448,13 @@ export const fileIcons: FileIcons = {
 		extensions: ["jsconfig.json", "js.map", "mjs.map", "cjs.map"],
 	},
 	"javascript": {
-		languages: ["javascript"],
 		extensions: ["esx", "js", "cjs", "mjs"],
 	},
 	"json": {
-		languages: ["json", "jsonl", "jsonc", "hjson", "snippets"],
 		extensions: ["json", "jsonc", "tsbuildinfo", "json5", "jsonl", "ndjson", "hjson", "webmanifest"],
 		names: [".jscsrc", ".jshintrc", ".jsbeautifyrc", ".esformatter", "cdp.pid", ".lintstagedrc", ".whitesource"],
 	},
 	"julia": {
-		languages: ["julia", "juliamarkdown"],
 		extensions: ["jl"],
 	},
 	"just": {
@@ -497,7 +469,6 @@ export const fileIcons: FileIcons = {
 		extensions: ["kt", "kts"],
 	},
 	"latex": {
-		languages: ["tex", "doctex", "latex", "latex-expl3"],
 		extensions: ["tex", "sty", "dtx", "ltx"],
 	},
 	"license": {
@@ -557,7 +528,6 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"lua": {
-		languages: ["lua"],
 		extensions: ["lua"],
 	},
 	"luau-config": {
@@ -574,16 +544,13 @@ export const fileIcons: FileIcons = {
 		extensions: ["d.luau", "h.luau"],
 	},
 	"luau": {
-		languages: ["luau"],
 		extensions: ["luau"],
 	},
 	"makefile": {
-		languages: ["makefile"],
 		extensions: ["mk"],
 		names: ["makefile", "gnumakefile", "kbuild"],
 	},
 	"markdown": {
-		languages: ["markdown"],
 		extensions: ["md", "markdown", "rst"],
 	},
 	"markdownx": {
@@ -593,11 +560,9 @@ export const fileIcons: FileIcons = {
 		names: ["next.config.js", "next.config.mjs", "next.config.ts", "next.config.mts"],
 	},
 	"nim": {
-		languages: ["nim", "nimble"],
 		extensions: ["nim", "nims", "nimble", "paths"],
 	},
 	"nix": {
-		languages: ["nix"],
 		extensions: ["nix"],
 		names: ["flake.lock"],
 	},
@@ -657,7 +622,6 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"pcss": {
-		languages: ["postcss"],
 		extensions: ["pcss", "sss"],
 		names: [
 			"postcss.config.js",
@@ -680,28 +644,22 @@ export const fileIcons: FileIcons = {
 		extensions: ["pdf"],
 	},
 	"perl": {
-		languages: ["perl", "perl6", "raku"],
 		extensions: ["pl", "pm", "pod", "t", "psgi", "raku", "rakumod", "rakutest", "rakudoc", "nqp", "p6", "pl6", "pm6"],
 	},
 	"php": {
-		languages: ["php"],
 		extensions: ["php", "phtml"],
 	},
 	"powershell": {
-		languages: ["bat", "powershell"],
 		extensions: ["bat", "cmd", "ps1", "psm1", "psd1", "ps1xml", "psc1", "pssc"],
 	},
 	"python": {
-		languages: ["python"],
 		extensions: ["py", "pyc", "pyo", "pyd"],
 		names: ["pyproject.toml", "requirements.txt", "requirements-dev.txt", "requirements-test.txt", ".python-version"],
 	},
 	"react-typescript": {
-		languages: ["typescriptreact"],
 		extensions: ["tsx"],
 	},
 	"react": {
-		languages: ["javascriptreact"],
 		extensions: ["jsx"],
 	},
 	"readme": {
@@ -722,7 +680,6 @@ export const fileIcons: FileIcons = {
 		extensions: ["rbxl", "rbxlx"],
 	},
 	"ruby": {
-		languages: ["ruby"],
 		extensions: ["rb", "erb", "rbs"],
 		names: [".ruby-version"],
 	},
@@ -730,22 +687,18 @@ export const fileIcons: FileIcons = {
 		names: ["rustfmt.toml", ".rustfmt.toml", "rust-toolchain.toml", "clippy.toml"],
 	},
 	"rust": {
-		languages: ["rust"],
 		extensions: ["rs", "ron"],
 	},
 	"scala": {
-		languages: ["scala"],
 		extensions: ["scala", "sc"],
 	},
 	"scss": {
-		languages: ["scss", "sass"],
 		extensions: ["scss", "sass"],
 	},
 	"security": {
 		names: ["security.md", "security.txt", "security"],
 	},
 	"shell": {
-		languages: ["shellscript", "awk"],
 		extensions: ["sh", "ksh", "csh", "tcsh", "zsh", "bash", "awk", "fish"],
 		names: [
 			"applypatch-msg",
@@ -794,16 +747,13 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"svelte": {
-		languages: ["svelte"],
 		extensions: ["svelte"],
 		names: ["svelte.config.js", "svelte.config.ts", "svelte.config.cjs", "svelte.config.mjs"],
 	},
 	"svg": {
-		languages: ["svg"],
 		extensions: ["svg"],
 	},
 	"swift": {
-		languages: ["swift"],
 		extensions: ["swift"],
 	},
 	"tailwind": {
@@ -819,7 +769,6 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"terraform": {
-		languages: ["tf"],
 		extensions: ["tf", "tf.json", "tfvars", "tfstate", "tfbackend"],
 	},
 	"test-blue": {
@@ -896,7 +845,6 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"text": {
-		languages: ["plaintext"],
 		extensions: ["txt", "rtf", "doc", "docx"],
 	},
 	"todo": {
@@ -904,7 +852,6 @@ export const fileIcons: FileIcons = {
 		names: ["todo.md", "todos.md", "todo.txt", "todos.txt", "todo", "todos"],
 	},
 	"toml": {
-		languages: ["toml"],
 		extensions: ["toml"],
 	},
 	"typescript-config": {
@@ -941,7 +888,6 @@ export const fileIcons: FileIcons = {
 		extensions: ["d.ts", "d.cts", "d.mts"],
 	},
 	"typescript": {
-		languages: ["typescript"],
 		extensions: ["ts", "cts", "mts"],
 	},
 	"video": {
@@ -970,7 +916,6 @@ export const fileIcons: FileIcons = {
 		],
 	},
 	"visual-studio": {
-		languages: ["testOutput", "vb"],
 		extensions: ["csproj", "ruleset", "sln", "slnx", "suo", "vb", "vbs", "vcxitems", "vcxitems.filters", "vcxproj", "vcxproj.filters"],
 	},
 	"vite": {
@@ -998,7 +943,6 @@ export const fileIcons: FileIcons = {
 		extensions: ["vsixmanifest", "vsix", "code-workplace", "code-workspace", "code-profile", "code-snippets", ".vscode/json"],
 	},
 	"vue": {
-		languages: ["vue"],
 		extensions: ["vue"],
 		names: [
 			"vue.config.js",
@@ -1017,18 +961,15 @@ export const fileIcons: FileIcons = {
 		names: ["wally.toml"],
 	},
 	"web-assembly": {
-		languages: ["wasm"],
 		extensions: ["wasm", "wat"],
 	},
 	"workflow": {
-		languages: ["github-actions-workflow"],
 		extensions: [
 			"workflows/yml",
 			"workflows/yaml",
 		],
 	},
 	"xml": {
-		languages: ["xml"],
 		extensions: [
 			"xml",
 			"plist",
@@ -1052,7 +993,6 @@ export const fileIcons: FileIcons = {
 		names: [".htaccess"],
 	},
 	"yaml": {
-		languages: ["yaml", "spring-boot-properties-yaml"],
 		extensions: ["yml", "yaml"],
 	},
 	"yarn-lock": {
@@ -1097,17 +1037,10 @@ export const fileIcons: FileIcons = {
 	},
 };
 
-export const languageIds: { [key: string]: string } = {};
 export const fileNames: { [key: string]: string } = {};
 export const fileExtensions: { [key: string]: string } = {};
 
 for (const [id, value] of Object.entries(fileIcons)) {
-	if (value.languages) {
-		for (const lang of value.languages) {
-			languageIds[lang] = id;
-		}
-	}
-
 	if (value.names) {
 		for (const name of value.names) {
 			fileNames[name] = id;

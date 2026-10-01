@@ -1,55 +1,122 @@
-import type { Palette } from "./palettes";
-import type { IconDefinitions } from "~/types";
-import { cp, mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, parse } from "node:path";
-import { IconVariant } from "~/constants";
-import { createTheme } from "~/themes";
-import { lattePalette, mochaPalette, sourcePalette } from "./palettes";
+import { fileExtensions, fileNames } from "../src/defaults/file-icons.ts";
+import { folderNames } from "../src/defaults/folder-icons.ts";
+import { lattePalette, mochaPalette, sourcePalette } from "./palettes.ts";
 
-const iconFilenames = await readdir("icons");
+const iconDirectory = "icons";
+const themesDirectory = "icon_themes";
+const iconFilenames = (await readdir(iconDirectory, { withFileTypes: true }))
+	.filter(entry => entry.isFile() && entry.name.endsWith(".svg"))
+	.map(entry => entry.name)
+	.sort();
 
-function replaceSvgColors(content: string, palette: Palette): string {
+function replaceSvgColors(content: string, palette: typeof mochaPalette): string {
 	for (const [key, sourceColor] of Object.entries(sourcePalette)) {
-		content = content.replaceAll(sourceColor, palette[key as keyof Palette]);
+		content = content.replaceAll(sourceColor, palette[key as keyof typeof palette]);
 	}
 	return content;
 }
 
-async function applyPalette(variant: IconVariant, palette: Palette) {
-	return Promise.all(iconFilenames.map(async (filename) => {
-		const content = await readFile(join("dist", "themes", variant, "icons", filename), "utf-8");
-		const modified = replaceSvgColors(content, palette);
+function iconPath(theme: "mocha" | "latte", filename: string): string {
+	return `./icons/${theme}/${filename}`;
+}
 
-		await writeFile(join("dist", "themes", variant, "icons", filename), modified, "utf-8");
+async function generateIconSet(theme: "mocha" | "latte", palette: typeof mochaPalette) {
+	const outputDirectory = join(iconDirectory, theme);
+	await rm(outputDirectory, { recursive: true, force: true });
+	await mkdir(outputDirectory, { recursive: true });
+
+	await Promise.all(iconFilenames.map(async (filename) => {
+		const source = await readFile(join(iconDirectory, filename), "utf-8");
+		await writeFile(join(outputDirectory, filename), replaceSvgColors(source, palette), "utf-8");
 	}));
 }
 
-async function generateIconVariant(variant: IconVariant, palette: Partial<Palette>) {
-	await rm(join("dist", "themes", variant), { recursive: true, force: true });
-	await mkdir(join("dist", "themes", variant, "icons"), { recursive: true });
-	await cp("icons", join("dist", "themes", variant, "icons"), { recursive: true });
+function createTheme(name: string, appearance: "dark" | "light", theme: "mocha" | "latte") {
+	const fileIcons: Record<string, { path: string }> = {
+		default: { path: iconPath(theme, "_file.svg") },
+	};
 
-	await applyPalette(variant, palette);
+	for (const filename of iconFilenames) {
+		const iconId = parse(filename).name;
+		if (iconId.startsWith("folder_") || iconId.startsWith("_")) {
+			continue;
+		}
+
+		fileIcons[iconId] = { path: iconPath(theme, filename) };
+	}
+
+	const namedDirectoryIcons: Record<string, { collapsed: string; expanded: string }> = {};
+	for (const [name, iconId] of Object.entries(folderNames)) {
+		namedDirectoryIcons[name] = {
+			collapsed: iconPath(theme, `${iconId}.svg`),
+			expanded: iconPath(theme, `${iconId}_open.svg`),
+		};
+	}
+
+	const missingIconIds = [...new Set([...Object.values(fileNames), ...Object.values(fileExtensions)])]
+		.filter(iconId => !(iconId in fileIcons));
+	if (missingIconIds.length > 0) {
+		throw new Error(`File mappings reference missing icons: ${missingIconIds.join(", ")}`);
+	}
+
+	return {
+		name,
+		appearance,
+		directory_icons: {
+			collapsed: iconPath(theme, "_folder.svg"),
+			expanded: iconPath(theme, "_folder_open.svg"),
+		},
+		named_directory_icons: namedDirectoryIcons,
+		file_stems: fileNames,
+		file_suffixes: fileExtensions,
+		file_icons: fileIcons,
+	};
 }
 
-async function createThemeFiles() {
-	const iconDefinitions = iconFilenames.reduce<IconDefinitions>((acc, filename) => {
-		acc[parse(filename).name] = { iconPath: `./icons/${filename}` };
-		return acc;
-	}, {});
+async function validateThemePaths(theme: ReturnType<typeof createTheme>) {
+	const paths = [
+		theme.directory_icons.collapsed,
+		theme.directory_icons.expanded,
+		...Object.values(theme.named_directory_icons).flatMap(({ collapsed, expanded }) => [collapsed, expanded]),
+		...Object.values(theme.file_icons).map(({ path }) => path),
+	];
 
-	const iconDefinitionsJson = JSON.stringify(iconDefinitions);
-	const baseThemeJson = JSON.stringify(createTheme({}, iconDefinitions));
+	const missingPaths: string[] = [];
+	for (const path of paths) {
+		try {
+			await readFile(path.slice(2));
+		}
+		catch {
+			missingPaths.push(path);
+		}
+	}
 
-	for (const variant of Object.values(IconVariant)) {
-		await writeFile(join("dist", "themes", variant, "iconDefinitions.json"), iconDefinitionsJson, "utf-8");
-		await writeFile(join("dist", "themes", variant, "theme.json"), baseThemeJson, "utf-8");
+	if (missingPaths.length > 0) {
+		throw new Error(`Theme references missing icon files: ${missingPaths.join(", ")}`);
 	}
 }
 
 await Promise.all([
-	generateIconVariant(IconVariant.Mocha, mochaPalette),
-	generateIconVariant(IconVariant.Latte, lattePalette),
+	generateIconSet("mocha", mochaPalette),
+	generateIconSet("latte", lattePalette),
 ]);
 
-await createThemeFiles();
+const mochaTheme = createTheme("Charmed Icons (Catppuccin Mocha)", "dark", "mocha");
+const latteTheme = createTheme("Charmed Icons (Catppuccin Latte)", "light", "latte");
+await Promise.all([validateThemePaths(mochaTheme), validateThemePaths(latteTheme)]);
+
+const themeFamily = {
+	$schema: "https://zed.dev/schema/icon_themes/v0.3.0.json",
+	name: "Charmed Icons",
+	author: "littensy",
+	themes: [mochaTheme, latteTheme],
+};
+
+await mkdir(themesDirectory, { recursive: true });
+await writeFile(join(themesDirectory, "charmed-icons.json"), `${JSON.stringify(themeFamily, null, 2)}\n`, "utf-8");
+
+console.info(`Generated Mocha and Latte icon sets (${iconFilenames.length} SVGs each).`);
+console.info(`File mappings: ${Object.keys(fileNames).length} stems, ${Object.keys(fileExtensions).length} suffixes.`);
+console.info(`Named folders: ${Object.keys(folderNames).length}.`);

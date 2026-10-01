@@ -1,15 +1,12 @@
 import process from "node:process";
-import { fileIcons, folderIcons } from "~/defaults";
+import { fileIcons } from "../src/defaults/file-icons.ts";
+import { folderIcons } from "../src/defaults/folder-icons.ts";
 
-const languageCounts: Record<string, number> = {};
 const fileExtensionCounts: Record<string, number> = {};
 const fileNameCounts: Record<string, number> = {};
 const folderNameCounts: Record<string, number> = {};
 
-for (const { languages = [], extensions = [], names = [] } of Object.values(fileIcons)) {
-	for (const language of languages) {
-		languageCounts[language] = (languageCounts[language] ?? 0) + 1;
-	}
+for (const { extensions = [], names = [] } of Object.values(fileIcons)) {
 	for (const extension of extensions) {
 		fileExtensionCounts[extension] = (fileExtensionCounts[extension] ?? 0) + 1;
 	}
@@ -38,7 +35,6 @@ function checkDuplicates(
 	}
 }
 
-checkDuplicates(languageCounts, "language");
 checkDuplicates(fileExtensionCounts, "file extension");
 checkDuplicates(fileNameCounts, "file name");
 checkDuplicates(folderNameCounts, "folder name");

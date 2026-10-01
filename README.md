@@ -1,9 +1,10 @@
 <p align="center">
-  <p align="center">
-	<img src="assets/icon.png" alt="Logo" width="128" />
-  </p>
-  <h1 align="center"><b>Charmed Icons</b></h1>
+  <img src="assets/icon.png" alt="Charmed Icons" width="128" />
 </p>
+
+<h1 align="center">Charmed Icons</h1>
+
+<p align="center">A Zed icon theme with Catppuccin Mocha and Latte palettes.</p>
 
 <div align="center">
 
@@ -12,101 +13,63 @@
 
 </div>
 
-## 📷 Previews
+## Install
 
-<details>
-  <summary>🌙 Catppuccin Mocha (dark)</summary>
-  <img src="assets/base.webp"/>
-</details>
-<details>
-  <summary>☀️ Catppuccin Latte (light)</summary>
-  <img src="assets/light.webp"/>
-</details>
+This repository can be installed locally as a Zed dev extension:
 
-Choose the Mocha icon theme with a dark VS Code color theme and the Latte icon theme with a light one.
+1. Open Zed's Extensions page.
+2. Choose **Install Dev Extension**.
+3. Select this repository's directory.
 
-## 🔧 Usage
+Then select **Charmed Icons (Catppuccin Mocha)** or **Charmed Icons (Catppuccin Latte)** in the icon theme selector. The extension provides both variants in one family.
 
-### Marketplace
+## System appearance settings
 
-You can find my icons on the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=littensy.charmed-icons) or on the [Open VSX Registry](https://open-vsx.org/extension/littensy/charmed-icons).
+To switch the icon palette with your system's light or dark appearance, add this to Zed's `settings.json`:
 
-### Manual
-
-1. Download the `.vsix` file from the [Releases](https://github.com/littensy/charmed-icons/releases) page.
-2. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) in VS Code.
-3. Run the `Extensions: Install from VSIX...` command.
-
-## 🎨 Customization
-
-### Settings
-
-You can customize the icon theme with the following settings:
-
-```jsonc
+```json
 {
-	// Set to `true` to disable folding arrows next to folder icons.
-	"charmed-icons.hidesExplorerArrows": false,
-
-	// Set to `when-expanded` to use outlines when the folder is expanded.
-	// Set to `always` to always use outlined folder icons.
-	// Set to `never` to always use filled folder icons.
-	"charmed-icons.outlinedFolders": "when-expanded"
+  "icon_theme": {
+    "mode": "system",
+    "dark": "Charmed Icons (Catppuccin Mocha)",
+    "light": "Charmed Icons (Catppuccin Latte)"
+  }
 }
 ```
 
-### Custom icon associations
+## File and folder icons
 
-Charmed Icons also supports custom icon associations (thanks to [Catppuccin Icons](https://github.com/catppuccin/vscode-icons/tree/main?tab=readme-ov-file#custom-icon-associations)):
+File names and suffixes retain the existing Charmed Icons associations. Folder aliases use their named icons, with separate assets for collapsed and expanded states. The project root uses the generic folder pair because Zed does not support a root-folder override in icon themes.
 
-```jsonc
-{
-	// Files with the language type `typescriptreact` will have the `react-typescript` icon.
-	"charmed-icons.associations.languages": {
-		"typescriptreact": "react-typescript"
-	},
+Zed continues to show its own Git status and diagnostic indicators. Icon themes do not define separate artwork for those states.
 
-	// Files with the `spec.ts` extension will have the `test-blue` icon.
-	"charmed-icons.associations.extensions": {
-		"spec.ts": "test-blue"
-	},
+Zed's icon theme format supports file names and suffixes, but not language-ID associations or runtime icon customization settings. File associations are therefore based on the theme's static names and suffixes.
 
-	// Files with the name `vite.config.ts` will have the `vite` icon.
-	"charmed-icons.associations.files": {
-		"vite.config.ts": "vite"
-	},
+## Development
 
-	// Folders with the name `typings/` will have the `folder_types` icon.
-	"charmed-icons.associations.folders": {
-		"typings": "folder_types"
-	}
-}
+The checked-in `icons/mocha` and `icons/latte` sets are generated from the source SVGs in `icons/` and the palette definitions in `scripts/palettes.ts`. With Node.js 22.6 or newer, regenerate the icon files and theme JSON with:
+
+```sh
+pnpm generate
 ```
 
-> [!NOTE]
-> See the [preview images](#-previews) for a list of available icons.
+Check the source association lists for duplicate names with:
 
-## 🙌 Requests
+```sh
+pnpm check-duplicates
+```
 
-If you have any icon requests, please [open an issue](https://github.com/littensy/charmed-icons/issues/new).
+Zed's [icon theme extension guide](https://zed.dev/docs/extensions/icon-themes) documents the theme format, and [icon theme settings](https://zed.dev/docs/icon-themes) explains system appearance selection.
 
-Ping me on Discord `@littensy` for a quicker response!!
+## Requests
 
-## ❤️ Gratitude
+For icon requests, [open an issue](https://github.com/littensy/charmed-icons/issues/new). You can also reach `@littensy` on Discord.
 
-Charmed Icons draws heavy inspiration from:
+## Gratitude
 
-- [Catppuccin Icons](https://github.com/catppuccin/vscode-icons): Soothing pastel icons for VSCode.
-- [Monospace Theme](https://github.com/keksiqc/monospace-theme): The Monospace Theme from Google's IDX.
+Charmed Icons draws inspiration from:
 
----
+- [Catppuccin Icons](https://github.com/catppuccin/vscode-icons): soothing pastel icons.
+- [Monospace Theme](https://github.com/keksiqc/monospace-theme): Google's former IDX theme.
 
-<p align="center">
-Charmed Icons is released under the <a href="LICENSE.md">MIT License</a>.
-</p>
-
-<div align="center">
-
-[![MIT License](https://img.shields.io/github/license/littensy/charmed-icons?style=for-the-badge)](LICENSE.md)
-
-</div>
+Charmed Icons is released under the [MIT License](LICENSE.md).
